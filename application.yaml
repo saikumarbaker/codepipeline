@@ -13,7 +13,7 @@ Resources:
           - Effect: Allow
             Principal:
               Service:
-                - AWSIoT
+                - IoT
             Action:
               - 'sts:AssumeRole'
       Path: /
