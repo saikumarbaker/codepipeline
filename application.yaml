@@ -1,22 +1,22 @@
-AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  policyarn:
+    Type: String
+    Description: 'ARN of the first IAM Managed Policy to add to the role'
+  
 Resources:
-  cloudfrontdistribution:
-    Type: AWS::CloudFront::Distribution
+  RootRole:
+    Type: 'AWS::IAM::Role'
     Properties:
-      DistributionConfig:
-        CacheBehaviors:
-          - LambdaFunctionAssociations:
-              - EventType: string-value
-                LambdaFunctionARN: string-value
-        DefaultCacheBehavior:
-          LambdaFunctionAssociations:
-            - EventType: string-value
-              LambdaFunctionARN: string-value
-        IPV6Enabled: boolean-value
-        Origins:
-          - CustomOriginConfig:
-              OriginKeepaliveTimeout: integer-value
-              OriginReadTimeout: integer-value
-      Tags:
-        - Key: string-value
-          Value: string-value
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path: /
+      ManagedPolicyArns:
+        - !Ref policyarn
+        
