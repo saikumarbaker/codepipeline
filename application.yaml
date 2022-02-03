@@ -4,7 +4,7 @@ Parameters:
     Description: 'ARN of the first IAM Managed Policy to add to the role'
   
 Resources:
-  RootRole:
+  SC-053165547543-pp-cekfnk-LumenTerrainAuditRolenew-M8EFD8YADMBY:
     Type: 'AWS::IAM::Role'
     Properties:
       AssumeRolePolicyDocument:
